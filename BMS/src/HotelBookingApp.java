@@ -1,10 +1,13 @@
 /*
-* Use Case 2: Basic Room Types & Static Availability
+* Use Case 3: Centralized Room Inventory Management
 *
 * @auther Mohith
-* @version 2.0
+* @version 3.0
 *
  */
+
+import java.util.HashMap;
+import java.util.Map;
 
 abstract class Room {
     private int beds;
@@ -44,23 +47,30 @@ class SuiteRoom extends Room {
 
 public class HotelBookingApp {
     public static void main(String[] args) {
-        int singleAvailable = 5;
-        int doubleAvailable = 3;
-        int suiteAvailable = 2;
+        // Centralized Inventory using HashMap
+        Map<String, Integer> inventory = new HashMap<>();
+        inventory.put("Single Room", 5);
+        inventory.put("Double Room", 3);
+        inventory.put("Suite Room", 2);
 
+        System.out.println("Hotel Room Inventory Status\n");
+
+        // Displaying Single Room Info
         SingleRoom single = new SingleRoom();
         System.out.println("Single Room:");
         single.displayInfo();
-        System.out.println("Available: " + singleAvailable);
+        System.out.println("Available Rooms: " + inventory.get("Single Room"));
 
+        // Displaying Double Room Info
         System.out.println("\nDouble Room:");
         DoubleRoom doubleRm = new DoubleRoom();
         doubleRm.displayInfo();
-        System.out.println("Available: " + doubleAvailable);
+        System.out.println("Available Rooms: " + inventory.get("Double Room"));
 
+        // Displaying Suite Room Info
         System.out.println("\nSuite Room:");
         SuiteRoom suite = new SuiteRoom();
         suite.displayInfo();
-        System.out.println("Available: " + suiteAvailable);
+        System.out.println("Available Rooms: " + inventory.get("Suite Room"));
     }
 }
