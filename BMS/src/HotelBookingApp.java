@@ -1,8 +1,8 @@
 /*
-* Use Case 3: Centralized Room Inventory Management
+* Use Case 4: Room Search & Availability Check
 *
 * @auther Mohith
-* @version 3.0
+* @version 4.0
 *
  */
 
@@ -47,30 +47,31 @@ class SuiteRoom extends Room {
 
 public class HotelBookingApp {
     public static void main(String[] args) {
-        // Centralized Inventory using HashMap
-        Map<String, Integer> inventory = new HashMap<>();
-        inventory.put("Single Room", 5);
-        inventory.put("Double Room", 3);
-        inventory.put("Suite Room", 2);
+        // Initialize Inventory (System State)
+        Map<String, Integer> availability = new HashMap<>();
+        availability.put("Single", 5);
+        availability.put("Double", 3);
+        availability.put("Suite", 2);
 
-        System.out.println("Hotel Room Inventory Status\n");
+        System.out.println("--- Room Search Results ---\n");
 
-        // Displaying Single Room Info
-        SingleRoom single = new SingleRoom();
-        System.out.println("Single Room:");
-        single.displayInfo();
-        System.out.println("Available Rooms: " + inventory.get("Single Room"));
+        // Logic to check and display availability without modifying the map
+        if (availability.get("Single") > 0) {
+            System.out.println("Single Room:");
+            new SingleRoom().displayInfo();
+            System.out.println("Available: " + availability.get("Single"));
+        }
 
-        // Displaying Double Room Info
-        System.out.println("\nDouble Room:");
-        DoubleRoom doubleRm = new DoubleRoom();
-        doubleRm.displayInfo();
-        System.out.println("Available Rooms: " + inventory.get("Double Room"));
+        if (availability.get("Double") > 0) {
+            System.out.println("\nDouble Room:");
+            new DoubleRoom().displayInfo();
+            System.out.println("Available: " + availability.get("Double"));
+        }
 
-        // Displaying Suite Room Info
-        System.out.println("\nSuite Room:");
-        SuiteRoom suite = new SuiteRoom();
-        suite.displayInfo();
-        System.out.println("Available Rooms: " + inventory.get("Suite Room"));
+        if (availability.get("Suite") > 0) {
+            System.out.println("\nSuite Room:");
+            new SuiteRoom().displayInfo();
+            System.out.println("Available: " + availability.get("Suite"));
+        }
     }
 }
